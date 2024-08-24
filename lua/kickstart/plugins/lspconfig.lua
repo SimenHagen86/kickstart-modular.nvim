@@ -28,6 +28,7 @@ return {
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+      { 'antosha417/nvim-lsp-file-operations', config = true },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -176,7 +177,11 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
+        html = {},
+        tailwindcss = {},
+        cssls = {},
+        emmet_ls = {},
         --
 
         lua_ls = {
@@ -189,7 +194,7 @@ return {
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -208,6 +213,18 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'tsserver',
+        'html',
+        'cssls',
+        'tailwindcss',
+        'svelte',
+        'lua_ls',
+        'graphql',
+        'emmet_ls',
+        'prismals',
+        'pyright',
+        'prettier',
+        'prettierd',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
